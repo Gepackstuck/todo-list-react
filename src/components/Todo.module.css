@@ -1,0 +1,58 @@
+ul {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  border: 0.5px solid rgb(209, 209, 209);
+  margin-top: 0.5px;
+}
+
+.todostrike {
+  cursor: pointer;
+  text-decoration: line-through;
+}
+
+.todo {
+  cursor: pointer;
+}
+
+.listBox {
+  max-width: 600px;
+}
+
+.listBox p {
+  margin-left: 30px;
+  width: 80%;
+}
+
+.inputField {
+  margin-top: 5px;
+  max-width: 600px;
+  display: flex;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #fafafa;
+  border: 0;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  transition: 0.3s box-shadow;
+  margin: 0;
+  padding-left: 30px;
+  font-style: italic;
+}
+
+.underBlock {
+    display: flex;
+    border: 0.5px solid rgb(209, 209, 209);
+    margin-top: 0.5px;
+}
