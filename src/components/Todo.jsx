@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import classes from "./Todo.module.css";
+
 //LockalStorage
 const getLocalItems = () => {
   let lists = localStorage.getItem("lists");
@@ -21,6 +22,7 @@ const Todo = () => {
   }, [list]);
 
   const addItem = () => {
+    if (!userInput) return;
     const NewItemData = {
       id: Date.now(),
       name: userInput,
@@ -30,9 +32,20 @@ const Todo = () => {
     setList([...list, NewItemData]);
   };
 
+  const doneDel = () => {
+    let que = window.confirm("Точно удалить все выполненные задачи?");
+    if (que) {
+      const Dones = list.filter((e) => e.complete !== true);
+      setList(Dones);
+    }
+  };
+
   const delItem = (id) => {
-    const NewList = list.filter((e) => e.id !== id);
-    setList(NewList);
+    let que = window.confirm("Точно удалить задачу?");
+    if (que) {
+      const NewList = list.filter((e) => e.id !== id);
+      setList(NewList);
+    }
   };
 
   const doneItem = (id) => {
@@ -45,7 +58,7 @@ const Todo = () => {
   };
 
   return (
-    <div>
+    <div className={classes.wrapper}>
       <div className={classes.inputField}>
         <input
           type="text"
@@ -65,16 +78,16 @@ const Todo = () => {
               >
                 {item.name}
               </p>
-              <button onClick={() => delItem(item.id)}>X</button>
+              <button onClick={() => delItem(item.id)} className={classes.delbtn}>X</button>
             </li>
           ))}
         </ul>
         <div className={classes.underBlock}>
-            <p>{list.length} задач осталось</p>
-            <button>Все</button>
-            <button>Активные</button>
-            <button>Выполненные</button>
-            <button>Удалить выполненные</button>
+          <p className={classes.count}>{list.length} задач осталось</p>
+          <button>Все</button>
+          <button>Активные</button>
+          <button>Выполненные</button>
+          <button onClick={() => doneDel()}>Удалить выполненные</button>
         </div>
       </div>
     </div>

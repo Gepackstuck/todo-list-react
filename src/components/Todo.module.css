@@ -1,21 +1,35 @@
+@import url("//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic");
+
+.wrapper {
+  margin: 40px;
+}
+
 ul {
   display: flex;
   flex-direction: column;
   padding: 0;
   margin: 0;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
 }
 
 li {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   list-style: none;
-  border: 0.5px solid rgb(209, 209, 209);
+  border: 0.5px solid rgb(230, 230, 230);
+  background-color: #ffffff;
   margin-top: 0.5px;
+}
+
+li:hover {
+  font-weight: bolder;
 }
 
 .todostrike {
   cursor: pointer;
   text-decoration: line-through;
+  opacity: 30%;
 }
 
 .todo {
@@ -29,6 +43,7 @@ li {
 .listBox p {
   margin-left: 30px;
   width: 80%;
+  height: 20px;
 }
 
 .inputField {
@@ -52,7 +67,34 @@ input {
 }
 
 .underBlock {
-    display: flex;
-    border: 0.5px solid rgb(209, 209, 209);
-    margin-top: 0.5px;
+  display: flex;
+  border: 0.5px solid rgb(230, 230, 230);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  margin-top: 0.5px;
+  background-color: #ffffff;
+  align-items: center
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  /* border: 0.5px solid rgb(185, 185, 185); */
+}
+
+.count {
+    font-weight: bolder;
+}
+
+.delbtn {
+  margin-right: 40px;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  border-radius: 5px;
+  border: 0.5px solid rgb(185, 185, 185);
+}
+
+.delbtn:hover {
+  background-color: rgb(223, 223, 223);
 }
