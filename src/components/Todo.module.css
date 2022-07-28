@@ -22,18 +22,29 @@ li {
   margin-top: 0.5px;
 }
 
+.todo::before {
+  content: " ";
+  margin-right: 20px;
+}
+
+.todostrike::before {
+  content: "✓";
+  margin-right: 20px;
+}
+
 li:hover {
   font-weight: bolder;
 }
 
 .todostrike {
   cursor: pointer;
-  text-decoration: line-through;
   opacity: 30%;
+  width: 80%;
 }
 
 .todo {
   cursor: pointer;
+  width: 80%;
 }
 
 .listBox {
@@ -42,28 +53,27 @@ li:hover {
 
 .listBox p {
   margin-left: 30px;
-  width: 80%;
   height: 20px;
+  
 }
 
 .inputField {
-  margin-top: 5px;
   max-width: 600px;
   display: flex;
+  height: 52px;
 }
 
 input {
   display: block;
   width: 100%;
-  margin: 10px 0;
-  padding: 10px;
+  margin: 10px;
   background-color: #fafafa;
   border: 0;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-  transition: 0.3s box-shadow;
   margin: 0;
   padding-left: 30px;
   font-style: italic;
+  outline: none;
 }
 
 .underBlock {
@@ -72,18 +82,18 @@ input {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
   margin-top: 0.5px;
   background-color: #ffffff;
-  align-items: center
+  align-items: center;
+  justify-content: space-between;
 }
 
 button {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  /* border: 0.5px solid rgb(185, 185, 185); */
 }
 
 .count {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 
 .delbtn {
@@ -93,8 +103,28 @@ button {
   width: 40px;
   border-radius: 5px;
   border: 0.5px solid rgb(185, 185, 185);
+  opacity: 50%;
 }
 
 .delbtn:hover {
   background-color: rgb(223, 223, 223);
+  opacity: 80%;
+}
+
+.sections {
+  display: flex;
+}
+
+.sections button {
+  margin: 0 3px 0 3px;
+  opacity: 80%;
+  border: 0.5px solid rgb(185, 185, 185);
+  background-color: #fafafa;
+}
+
+.done_del {
+  margin-right: 10px;
+  opacity: 80%;
+  border: 0.5px solid rgb(185, 185, 185);
+  background-color: #fafafa;
 }
