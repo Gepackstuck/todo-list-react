@@ -16,10 +16,28 @@ const getLocalItems = () => {
 const Todo = () => {
   const [userInput, setUserInput] = useState("");
   const [list, setList] = useState(getLocalItems());
+  const [status, setStatus] = useState("all");
+  const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("lists", JSON.stringify(list));
   }, [list]);
+
+  useEffect(() => {
+    const filterHandler = () => {
+      switch (status) {
+        case "active":
+          setFiltered(list.filter((item) => item.complete === false));
+          break;
+        case "done":
+          setFiltered(list.filter((item) => item.complete === true));
+          break;
+        default:
+          setFiltered(list);
+      }
+    };
+    filterHandler();
+  }, [list, status]);
 
   const addItem = () => {
     if (!userInput) return;
@@ -41,8 +59,8 @@ const Todo = () => {
   };
 
   const delItem = (id) => {
-      const NewList = list.filter((e) => e.id !== id);
-      setList(NewList);
+    const NewList = list.filter((e) => e.id !== id);
+    setList(NewList);
   };
 
   const doneItem = (id) => {
@@ -52,6 +70,10 @@ const Todo = () => {
         : { ...task };
     });
     setList(doneList);
+  };
+
+  const a = (e) => {
+    setStatus(e.target.value);
   };
 
   return (
@@ -71,7 +93,7 @@ const Todo = () => {
       </div>
       <div className={classes.listBox}>
         <ul>
-          {list.map((item) => (
+          {filtered.map((item) => (
             <li key={item.id}>
               <p
                 onClick={() => doneItem(item.id)}
@@ -91,11 +113,17 @@ const Todo = () => {
           ))}
         </ul>
         <div className={classes.underBlock}>
-          <p className={classes.count}>Задач осталось: {list.length}</p>
+          <p className={classes.count}>Задач осталось: {filtered.length}</p>
           <div className={classes.sections}>
-            <button>Все</button>
-            <button>Активные</button>
-            <button>Выполненные</button>
+            <button value="all" onClick={a}>
+              Все
+            </button>
+            <button value="active" onClick={a}>
+              Активные
+            </button>
+            <button value="done" onClick={a}>
+              Выполненные
+            </button>
           </div>
           <button onClick={() => doneDel()} className={classes.done_del}>
             Удалить выполненные
