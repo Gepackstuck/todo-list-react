@@ -41,11 +41,8 @@ const Todo = () => {
   };
 
   const delItem = (id) => {
-    let que = window.confirm("Точно удалить задачу?");
-    if (que) {
       const NewList = list.filter((e) => e.id !== id);
       setList(NewList);
-    }
   };
 
   const doneItem = (id) => {
@@ -59,6 +56,9 @@ const Todo = () => {
 
   return (
     <div className={classes.wrapper}>
+      <div>
+        <h1>TODOS</h1>
+      </div>
       <div className={classes.inputField}>
         <input
           type="text"
@@ -66,6 +66,7 @@ const Todo = () => {
           onChange={(e) => setUserInput(e.target.value)}
           value={userInput}
           onKeyPress={(e) => e.key === "Enter" && addItem()}
+          data-testid="input-data"
         />
       </div>
       <div className={classes.listBox}>
@@ -75,19 +76,30 @@ const Todo = () => {
               <p
                 onClick={() => doneItem(item.id)}
                 className={item.complete ? classes.todostrike : classes.todo}
+                data-testid="input-result"
               >
                 {item.name}
               </p>
-              <button onClick={() => delItem(item.id)} className={classes.delbtn}>X</button>
+              <button
+                onClick={() => delItem(item.id)}
+                className={classes.delbtn}
+                data-testid="delete-elem"
+              >
+                X
+              </button>
             </li>
           ))}
         </ul>
         <div className={classes.underBlock}>
-          <p className={classes.count}>{list.length} задач осталось</p>
-          <button>Все</button>
-          <button>Активные</button>
-          <button>Выполненные</button>
-          <button onClick={() => doneDel()}>Удалить выполненные</button>
+          <p className={classes.count}>Задач осталось: {list.length}</p>
+          <div className={classes.sections}>
+            <button>Все</button>
+            <button>Активные</button>
+            <button>Выполненные</button>
+          </div>
+          <button onClick={() => doneDel()} className={classes.done_del}>
+            Удалить выполненные
+          </button>
         </div>
       </div>
     </div>
