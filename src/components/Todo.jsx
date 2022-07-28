@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import classes from "./Todo.module.css";
+import TaskItems from "./TaskItems.jsx";
+import InputField from "./InputField.jsx";
 
 //LockalStorage
 const getLocalItems = () => {
@@ -81,55 +83,20 @@ const Todo = () => {
       <div>
         <h1>TODOS</h1>
       </div>
-      <div className={classes.inputField}>
-        <input
-          type="text"
-          placeholder="Введите"
-          onChange={(e) => setUserInput(e.target.value)}
-          value={userInput}
-          onKeyPress={(e) => e.key === "Enter" && addItem()}
-          data-testid="input-data"
-        />
-      </div>
-      <div className={classes.listBox}>
-        <ul>
-          {filtered.map((item) => (
-            <li key={item.id}>
-              <p
-                onClick={() => doneItem(item.id)}
-                className={item.complete ? classes.todostrike : classes.todo}
-                data-testid="input-result"
-              >
-                {item.name}
-              </p>
-              <button
-                onClick={() => delItem(item.id)}
-                className={classes.delbtn}
-                data-testid="delete-elem"
-              >
-                X
-              </button>
-            </li>
-          ))}
-        </ul>
-        <div className={classes.underBlock}>
-          <p className={classes.count}>Задач осталось: {filtered.length}</p>
-          <div className={classes.sections}>
-            <button value="all" onClick={a}>
-              Все
-            </button>
-            <button value="active" onClick={a}>
-              Активные
-            </button>
-            <button value="done" onClick={a}>
-              Выполненные
-            </button>
-          </div>
-          <button onClick={() => doneDel()} className={classes.done_del}>
-            Удалить выполненные
-          </button>
-        </div>
-      </div>
+      <InputField
+        classes={classes}
+        setUserInput={setUserInput}
+        userInput={userInput}
+        addItem={addItem}
+      />
+      <TaskItems
+        classes={classes}
+        filtered={filtered}
+        doneItem={doneItem}
+        delItem={delItem}
+        a={a}
+        doneDel={doneDel}
+      />
     </div>
   );
 };
